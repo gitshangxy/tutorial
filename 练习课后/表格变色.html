@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02_1_隔行换色</title>
+    <style>
+        table{
+            text-align: center;
+            width: 80%;
+        }
+
+        tr{
+            width: 40px;
+            height: 30px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var tb = document.getElementById("tb");
+            var tbody = tb.getElementsByTagName("tbody")[0];
+//            alert(tbody)
+            var trs = tbody.getElementsByTagName("tr");
+
+            for (var i = 1; i < trs.length; i++) {
+                if (i % 2 == 0) {
+                    trs[i].style.backgroundColor = "darkgrey";
+
+                }
+            }
+            function light() {
+                    trs.style.backgroundColor = "red"
+
+        }
+
+        };
+    </script>
+</head>
+
+
+
+<body>
+
+<table id="tb" border="1" >
+    <tbody>
+    <tr onmousemove="light()" style="background-color: #888">
+        <td>编号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+    </tr>
+    <tr >
+        <td>1</td>
+        <td>张三</td>
+        <td>22</td>
+    </tr>
+    <tr >
+        <td>2</td>
+        <td>李四</td>
+        <td>25</td>
+    </tr>
+    <tr >
+        <td>3</td>
+        <td>王五</td>
+        <td>27</td>
+    </tr>
+    <tr >
+        <td>4</td>
+        <td>赵六</td>
+        <td>29</td>
+    </tr>
+    <tr >
+        <td>5</td>
+        <td>田七</td>
+        <td>30</td>
+    </tr>
+    <tr >
+        <td>6</td>
+        <td>汾九</td>
+        <td>20</td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
+

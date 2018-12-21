@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>邮箱验证</title>
+    <script type="text/javascript">
+        function check_required(){
+            //检查表单的邮件是否已输入
+            var useremail_input = document.getElementsByName("useremail")[0];
+            console.log(useremail_input.value);
+            if (useremail_input.value.length == 0) {
+                alert("邮箱不能为空");
+                return false;
+            }
+
+            if (useremail_input.value.length == @);
+        }
+    </script>
+</head>
+<body>
+　　
+    <form onsubmit="return check_required();" action="" enctype="multipart/form-data" method="post">
+            <label>用户名: </label><input name="username" type="text" placeholder="请输入用户名" required="true"><br>
+            <label>邮箱: </label><input name="useremail" type="email"><br><!--自带简单表单验证-->
+
+            <input type="reset" value="重置">
+            <input type="submit" value="确定提交">
+
+        </form>
+
+
+</body>
+</html>

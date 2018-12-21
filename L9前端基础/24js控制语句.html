@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js控制语句</title>
+    <script>
+        // if 语句
+        var score = 70;
+        if (score >= 60){
+            // alert("及格");
+            console.log("及格")   //js控制台输出信息
+        }
+        else if (score >= 70) {
+
+        }
+        else {
+
+        }
+
+        // switch  语句
+        var level = 1;
+        var msg = "";
+        switch(level){
+            case 1:
+                msg = "普通会员";
+            case 2:
+                msg = "VIP";
+        }
+        console.log(msg);
+
+        //for 循环
+        for(var i=0; i<10; i++){
+            console.log(i);
+            document.write(i + "<br>")   //网页显示
+        }
+
+        // while 循环
+        var i = 0;
+        while (i<10){
+            console.log(i);
+            i++;
+        }
+
+        // break continue
+        for(var i=0; i<10; i++){
+            if (i==3){continue};  //不输出3
+            document.write(i + "<br>")
+            //break
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

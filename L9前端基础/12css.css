@@ -1,0 +1,35 @@
+/*标签选择器*/
+body {
+    background-color: #999999;
+    color: green;
+}
+p, body, a {
+    /*多个标签逗号分隔*/
+}
+/*派生选择器, 空格表示层级*/
+p strong {
+    color: violet;
+    font-size: 50px;
+}
+
+ul li strong {
+
+}
+
+/*id选择器*/
+#aaa {
+    color: red;
+}
+
+/*类选择器*/
+.chapter {
+    color: green;
+}
+
+/*属性选择器, 可在html中写 也可在css中写*/
+[title="提示文字"] {
+    color: red;
+}
+
+/*复杂的选择器可能是上面的某几种的结合*/
+/*形如 #aaa ul li .chapter {}*/

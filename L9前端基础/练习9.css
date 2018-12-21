@@ -1,0 +1,27 @@
+.qd{
+    width: 100px;
+    height: 100px;
+    background-color: lightskyblue;
+    float: left;
+    /*float: right;*/
+}
+.wd{
+    width: 100px;
+    height: 100px;
+    background-color: lightseagreen;
+    float: left;
+    /*float: right;*/
+
+}
+.ed{
+    width: 100px;
+    height: 100px;
+    background-color: lightsalmon;
+    /*float: left;*/
+    float: right;
+}
+
+.text {
+    clear: both;
+}
+
