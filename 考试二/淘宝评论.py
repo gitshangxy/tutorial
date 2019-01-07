@@ -1,32 +1,113 @@
 import requests
 import json
-from lxml import etree
+import jieba, pygal
 import pymysql.cursors
-import time
+from wordcloud import WordCloud
 
+class TaoBao(object):
+    def __init__(self):
+        self.conn= None
+        self.cursor = None
 
-comment_url ='https://item.taobao.com/item.htm?id=578862688632&ali_refid=a3_430673_1006:1102688980:N:%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA:00b3e8307fad0d0b4bdb981f7030febb&ali_trackid=1_00b3e8307fad0d0b4bdb981f7030febb&spm=a2e15.8261149.07626516002.7'
+        with open('tb_comments_1.json', encoding='utf-8') as f:
+            self.commentd = json.load(f)
+    def comment(self):
+        # 读取数据
+        comments = self.commentd['rateDetail']['rateList']
+        # print(comments)
+        for commentd in comments:
+            data = []
+            data.append(commentd['id'])
+            data.append(commentd['rateDate'])
+            content = '无'
+            if commentd["appendComment"]:
+                content = commentd["appendComment"]["content"]
+            data.append(content)
+            data.append(commentd['auctionSku'])
+            data.append(commentd['rateContent'])
 
-params = {}
+            print(f'id:{data[0]}\nrate_date:{data[1]}\nappend_cntent{data[2]}\naction_sku{data[3]}\nrate_cntent{data[4]}')
+            self.save_mysql(data[0], data[1], data[2], data[3], data[4])
 
-header = {
-    'cookie': '_lastvisited=l7i5FJ3ijHQCAasPpxSBczQL%2C%2Cl7i5FJ3ijHQCAasPpxSBczQL4lKhMjT6%2Cjqls6m09%2Cjqls6m09%2C3%2C5726fad4%2Cl7i5FJ3ijHQCAasPpxSBczQL%2Cjqlsx24j; _uab_collina=154683258604256073498853; _umdata=70CF403AFFD707DFF3E95395CD8A6FFBFED9813921568EB1780AC32782D7440069DAB387A094176ACD43AD3E795C914C35CD98E12D01C81D774A9D5DD3596788',
-    'referer': 'https://item.taobao.com/item.htm?id=578862688632&ali_refid=a3_430673_1006:1102688980:N:%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA:00b3e8307fad0d0b4bdb981f7030febb&ali_trackid=1_00b3e8307fad0d0b4bdb981f7030febb&spm=a2e15.8261149.07626516002.7',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
-}
+    def connection(self):
+        self.conn = pymysql.connect(host='127.0.0.1', port=3306,
+                                     user='root',
+                                     password='123456',
+                                     db='taobao',
+                                     charset='utf8mb4'
+                                     )
 
-comment_resp = requests.get(url=cmment_url, params=params, header=header)
+        self.cursor = self.conn.cursor()  # 创建游标
 
+    def save_mysql(self, *args):
+        self.connection()
+        # 先判断一下是否已存储过
+        sql1 = "select id from comments where comment_id=%s " % (args[0])
+        self.cursor.execute(sql1)
+        rs_set = self.cursor.fetchone()  # 有值返回{'id':23} 无值返回None
+        if rs_set:
+            print('这条评论已存在在数据库中')
+        # 存入数据库
+        sql2 = """
+        insert into comments (comment_id, rate_date, append_content, action_sku, rate_content) values ('%s','%s','%s','%s','%s')
+        """ % (args[0],args[1],args[2],args[3],args[4])
+        affected_row = self.cursor.execute(sql2)
+        if affected_row:
+            print('本条评论插入成功')
+        self.close()
 
+    def close(self):
+        self.conn.commit()
+        self.cursor.close()
+        self.conn.close()
 
+    def get_comments(self):
+        self.connection()
+        sql1 = """ SELECT rate_content, append_content FROM comments; """
+        self.cursor.execute(sql1)
+        rs_set = self.cursor.fetchall()
+        # print(rs_set)
+        # self.close()
+        # 分词
+        list1 = ''
+        for i in rs_set:
+            list1 += i[0]+i[1]
+        print(r'--'+list1)
+        # 文字 生成词云
+        font = 'msyh.ttc'
+        wc = WordCloud(font_path=font,
+                       background_color='white',
+                       width=1000,
+                       height=1000,
+                       max_font_size=200,
+                       min_font_size=50,
+                       ).generate(list1)
+        wc.to_file('淘宝评论.png')
 
+        # 写成饼状图,读取手机的每个颜色
+        self.cursor.execute(
+            """select COUNT(action_sku) from comments WHERE action_sku = '网络类型:4G+全网通;机身颜色:金色;套餐类型:官方标配;存储容量:6+64GB'""")
+        j = self.cursor.fetchone()
+        self.cursor.execute(
+            """select COUNT(action_sku) from comments WHERE action_sku = '网络类型:4G+全网通;机身颜色:黑色;套餐类型:官方标配;存储容量:6+64GB'""")
+        h = self.cursor.fetchone()
+        self.cursor.execute(
+            """select COUNT(action_sku) from comments WHERE action_sku = '网络类型:4G+全网通;机身颜色:白色;套餐类型:官方标配;存储容量:6+64GB'""")
+        b = self.cursor.fetchone()
+        self.cursor.execute(
+            """select COUNT(action_sku) from comments WHERE action_sku = '网络类型:4G+全网通;机身颜色:蓝色;套餐类型:官方标配;存储容量:6+64GB'""")
+        l = self.cursor.fetchone()
+        print(j, h, b, l)
+        pie_chart = pygal.Pie()
+        pie_chart.title = '根据action_sku分组，购买比例饼状图（in %)'
+        pie_chart.add('金色', j[0] / 99)
+        pie_chart.add('黑色', h[0] / 99)
+        pie_chart.add('白色', b[0] / 99)
+        pie_chart.add('蓝色', l[0] / 99)
+        pie_chart.render_to_file('taobao.svg')
+        self.close()
 
-
-
-"""
-Cookie: cna=l7i5FJ3ijHQCAasPpxSBczQL; sca=bcf97b5b; cdpid=UNQ2k6288PGAuQ%253D%253D; cnaui=3413193979; aui=3413193979; atpsidas=5a2f4afb18b244170776d6a9_1546833769_15; tbsa=0c08247a88ffa458fffd926c_1546833769_16; atpsida=ced305c4f7adad943f621c68_1546833769_17
-
-https://item.taobao.com/item.htm?id=578862688632&ali_refid=a3_430673_1006:1102688980:N:%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA:00b3e8307fad0d0b4bdb981f7030febb&ali_trackid=1_00b3e8307fad0d0b4bdb981f7030febb&spm=a2e15.8261149.07626516002.7
-"""
-
-
+if __name__ =='__main__':
+    content = TaoBao()
+    content.comment()
+    content.get_comments()
