@@ -38,8 +38,8 @@ class Student():
 
 xiaoming = Student('小明', 59)
 xiaoming.score = 80
-xiaoming.score1 = 'eval("print xx.py")'
-print(xiaoming.score1)
+xiaoming.score = 'eval("print xx.py")'
+print(xiaoming.score)
 
 # 6 多重继承
 # 一个子类具备多个父类的特征

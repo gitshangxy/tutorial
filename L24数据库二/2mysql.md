@@ -38,7 +38,9 @@ mongod --install --config "C:\Program Files\MongoDB\Server\4.0.4\mongod.conf"
 5. 客户端登录 mysql -u root -p刚才生成的密码
 6. 登陆进去后改密码。 ALTER USER "root"@"localhost"IDENTIFIED  BY "新密码"；
     或 alter user 'root'@'localhost' identified by 'xxx' PASSWORD EXPIRE NEVER account unlock;修改密码(xxx)
-    
+
+C:\Program Files\MongoDB\Server\4.0.4\bin;C:\Program Files\MySQL\mysql-8.0.13-winx64\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\system32\wbem;C:\Program Files\Git\cmd
+
 \q退出后可以用mysql -u root -p 重新登录。
 7.注册Windows服务 mysqld --install MySQL80 --defaults-file="C:\my.ini"
 

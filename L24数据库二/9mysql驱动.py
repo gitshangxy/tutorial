@@ -13,15 +13,6 @@ pip install MySQL-python
 
 import pymysql.cursors
 
-# connection = pymysql.connect(host='',
-#                              port='',
-#                              user='',
-#                              password='',
-#                              charset='',
-#                              cursorclass=pymysql.cursors.DictCursor)
-
-
-
 connection = pymysql.connect(host='127.0.0.1',
                              port=3306,
                              user='root',
@@ -63,7 +54,7 @@ try:
         print(result)
         xiaohong_id = result['id']
         print(xiaohong_id)
-        sql = """ UPDATE shirt set color='黄色' where person_id=%s and style='外套'; """
+        sql = """ UPDATE shirt set color='黄' where person_id=%s and style='外套'; """
         cursor.execute(sql, (xiaohong_id))
         r = cursor.fetchall()
         print(r)

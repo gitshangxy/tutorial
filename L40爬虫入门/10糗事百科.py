@@ -3187,9 +3187,23 @@ results2 = re.findall(pattern2, html_content)
 # print(results2)
 
 
-
-
-
-
 # https://www.cnblogs.com/huchong/p/8290340.html
 # https://www.cnblogs.com/dreamer-fish/p/3944945.html
+
+"""
+(1)string.replace(old, new, max)
+old → 旧字符串，将被替换的子字符串。
+new →新字符串，用于替换old子字符串。
+max → 可省略，默认全部替换，可选字符串，替换次数不超过max次。
+
+(2)re.sub()的功能
+re是regular expression的缩写，表示正则表达式；sub是substitude的缩写，表示替换
+re.sub是正则表达式的函数，实现比普通字符串更强大的替换功能 
+sub(pattern,repl,string,count=0,flag=0)
+1))pattern正则表达式的字符串 
+2))repl被替换的内容
+3))string正则表达式匹配的内容
+4))count:由于正则表达式匹配的结果是多个，使用count来限定替换的个数从左向右，默认值是0，替换所有的匹配到的结果
+5))flags是匹配模式，可以使用按位或者“|”表示同时生效，也可以在正则表达式字符串中指定eg中flags=re.I,flags表示忽略大小写
+中r'\w+'为正则表达式，匹配多个英文单词或者数字，
+"""

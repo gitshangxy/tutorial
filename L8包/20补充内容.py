@@ -17,3 +17,12 @@
 （课下 py文件打包成exe程序）https://blog.csdn.net/lqzdreamer/article/details/77917493
 
 """
+
+"""
+4> ftp包实现上传下载
+参考1 简单例子https://www.cnblogs.com/gongxr/p/7529949.html
+参考2 完善例子https://www.cnblogs.com/zhuzhiwen/p/7818005.html
+经测试多用户有问题
+npm install http-server 可行
+python -m http.server
+"""

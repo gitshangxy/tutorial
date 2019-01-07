@@ -56,5 +56,4 @@ pull是本地已经有仓库，另外的开发者提交过远程仓库，远程�
 4. (了解)folk和pull request  贡献开源项目
 5. (了解)解决冲突
 
-（git本地与远程仓库关联）https://smallblack.club/Git%E5%AD%A6%E4%B9
-%A0%E7%AC%94%E8%AE%B0/2018/10/15/git%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94.html?tdsourcetag=s_pcqq_aiomsg
+（git本地与远程仓库关联）https://smallblack.club/Git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2018/10/15/git%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%85%B3%E8%81%94.html?tdsourcetag=s_pcqq_aiomsg

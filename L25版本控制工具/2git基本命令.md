@@ -1,7 +1,7 @@
 git基本命令
 ===
 ## 准备工作
-打开git bash或cmd终端。cd到项目文件夹根目录下。 cd \pycharm尚小雨\testgit
+打开git bash或cmd终端。cd到项目文件夹根目录下。 cd \xxx\testgit
 - git config --global user.email "你的邮箱"
 - git config --global user.name "你的名字"
 - git init 。初始化本地仓库git，会看到项目文件夹下生成 .git隐藏文件夹，这个文件夹会记录以后的更改和提交。

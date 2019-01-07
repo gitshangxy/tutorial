@@ -20,7 +20,7 @@ student_json = """
 }
 """
 
-# 对象转json
+# 对象转json  （序列化）
 stu_json = json.dumps(student_list, indent=4)
 print(type(stu_json), stu_json)
 """
@@ -40,3 +40,7 @@ with open('7天气接口返回数量.json', encoding='utf-8') as file:
     weather_obj = json.load(file)
     print(weather_obj)
 
+# 可能出现的错误：
+# json解析错误。检查json双引号，逗号，缩进是否正确。
+# 面试题：
+# json.dump()和dumps()区别

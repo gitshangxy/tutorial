@@ -116,7 +116,7 @@ $	匹配字符串结束
 """
 
 
-
+# L40爬虫入门/10糗事百科(有关则正则 替换使用)
 
 # 作业1：课下百度re包其它方法 re.match()  re.findall()  re.finditer(),跟课上的re.compile  re.search做比较。
 
