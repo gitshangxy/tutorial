@@ -1,8 +1,8 @@
 create database jd1;
 
+create database test;
 select * from menagerie.pet; -- 如果没有切换数据库，查询时要声明从哪个库中的表查。
 
-create database test;
 
 show tables;
 
@@ -71,6 +71,7 @@ DELETE FROM shirt WHERE id=10;
 
 
 select count(id) as amount,product_color from comment group by product_color;
+select rate_content, append_content, rate_date from comments order by  rate_date desc;
 
 -- 避免过多的表直接连接降低查询效率
 

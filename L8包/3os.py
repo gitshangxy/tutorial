@@ -6,9 +6,10 @@ import os
 # from os import *
 
 
-# 1> os.path.exists  判断是否存在文件
+# 1> os.path.exists  判断是否存在文件。 判断路径是否存在。
 print(os.path.exists('1包引用.py'))    # True
 print(os.path.exists('text.txt'))    # False
+os.path.exists('D:\\pycharm尚小雨')
 
 # 2> 重命名
 # os.rename('aaa.txt', 'bbb.txt')
@@ -17,7 +18,8 @@ print(os.path.exists('text.txt'))    # False
 # os.remove('bbb.txt')
 
 # 4> 创建文件夹  make directory
-# os.mkdir('aaa')
+# os.mkdir('aaa')   # 只能创建单层路径
+# os.makedirs('bbb/bb')   # 可以一次创建多层路径
 
 # 5> 列出当前文件夹下的文件，相当于cmd中的dir命令 ,linux Is。
 os.listdir()

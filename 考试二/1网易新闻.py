@@ -14,7 +14,7 @@ class WanYi(object):
         response = requests.get(url=url, headers=self.headers)
         if not response.status_code == 200:
             raise Exception(f"请求失败, {response.status_code}")
-        self.html_content = response.text
+        self.html_content = response.text  # 获取内容
 
     def parse(self):
         # 解析

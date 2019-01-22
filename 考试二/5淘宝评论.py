@@ -12,14 +12,14 @@ class TaoBao(object):
         with open('tb_comments_1.json', encoding='utf-8') as f:
             self.commentd = json.load(f)
     def comment(self):
-        # 读取数据
+        # 从json中读取数据
         comments = self.commentd['rateDetail']['rateList']
         # print(comments)
         for commentd in comments:
             data = []
             data.append(commentd['id'])
             data.append(commentd['rateDate'])
-            content = '无'
+            content = '无'   # 有的没参数，需要先给一个默认值
             if commentd["appendComment"]:
                 content = commentd["appendComment"]["content"]
             data.append(content)
@@ -62,6 +62,7 @@ class TaoBao(object):
         self.conn.close()
 
     def get_comments(self):
+        # 读数据
         self.connection()
         sql1 = """ SELECT rate_content, append_content FROM comments; """
         self.cursor.execute(sql1)

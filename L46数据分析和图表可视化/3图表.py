@@ -9,7 +9,6 @@
 # 4. pygal 后端python图表库，包含常见图表类型，虽然种类不及matplotlib，但文档和示例非常简单。 安装 pip install pygal (如果pip安装不上 官方https://pypi.org/project/pygal/#files 文档下载 在终端cd到程序根目录下 pip install 程序文档名)
 # svg格式，比jpg、png复杂的一种图片格式，具备html属性，可以定义大小颜色、交互等各种功能，尺量图，体积小功能强
 
-
 import pygal
 
 bar = pygal.Bar()

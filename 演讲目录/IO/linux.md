@@ -1,3 +1,54 @@
+## 场景
+服务器，生产环境，服务器用的软件丰富。个人用软件质量远不如win。
+windows和macos好。没有孰优孰劣，场景和发展方向不同
+
+## linux发行版
+基于Linux内核，不同开发者根据需要加入软件，封装成了不同风格的Linux系统，有的偏底层灵活，有的预装软件丰富开箱即用。这些不同的Linux系统都叫做Linux发行版之一。
+debian Ubuntu  内置软件丰富，开箱即用。市场占比较高。
+centos  国内第一波Linux学习者使用centos，国内占比较多。慢慢被Ubuntu追上。
+redhat  红帽。商业公司开发运营。我为社区做贡献，社区帮我赚大钱。
+opensuse mint arch kyli  奶瓶   
+
+(课下)Unix  BSD(任天堂游戏机)
+
+## 推荐教程
+实验楼Linux入门教程，边学边做，掌握基础后再上阿里云实际操作和部署网站
+https://www.shiyanlou.com/courses/1
+
+## 实验环境
+1. (初学时推荐)实验楼网站Linux教程提供的在线Linux。缺点延迟。
+2. 本机vmware或hyper-v。缺点不能体验独立ip，域名，不利于理解服务端。
+3. (推荐)阿里云等云服务器。缺点，价格，琳琅满目的功能让初学者迷惑。
+
+(课外)虚拟化技术：
+VMware 
+
+
+
+## Ubuntu
+### 版本选择
+https://www.ubuntu.com/download/server
+版本选择
+(推荐)Server服务器版(纯命令行)  desktop桌面版(有桌面体验类似Windows)安装包更大对硬件要求更高。
+版本介绍https://blog.csdn.net/zhengmx100/article/details/78352773
+(推荐) .04
+
+### 目录
+根目录/  。并没有Windows的C、D盘。
+根目录下文件夹
+bin sbin 可执行程序
+boot  系统启动，加载内核
+dev  device  设备
+etc  配置
+home  用户。相当于win上的C:\Users
+lib  安装程序的源代码存放位置
+root  
+
+
+
+
+
+
 ## 查看linux系统常用的命令，linux查看系统配置常用命令
 1 linux CPU大小
 cat /proc/cpuinfo |grep "model name" && cat /proc/cpuinfo |grep "physical id"

@@ -7,12 +7,12 @@ response = urllib.request.urlopen('http://www.baidu.com')  # 建议debug看respo
 # urlopen(url,
 #
 # data={参数1: 值1, 参数2: 值2,}, timeout=网页响应超时时间)
-print(response)
+# print(response)   # <http.client.HTTPResponse object at 0x0000015D80912518>
 # 从响应度信息
-print(response.code)
+# print(response.code) # 响应 200
 html_content = response.read()  # socketIO bufferReader 模式rb，从响应体中读网页信息二进制数据出来。
-print(html_content)   # 字节类型的网页信息
-print(html_content.decode(encoding='utf-8'))  # 字节解码成字符串
+# print(html_content)   # 字节类型的网页信息
+print(html_content.decode(encoding='utf-8'))  # 字节解码成字符串 获得html文件
 
 
 
