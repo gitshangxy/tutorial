@@ -29,7 +29,7 @@ action = ActionChains(driver)
 
 menu = WebDriverWait(driver, 10).until(lambda driver:driver.find_element_by_class_name('bri'))
 
-print menu
+print(menu)
 
 action.move_to_element(menu).perform()
 
