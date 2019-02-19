@@ -33,5 +33,15 @@ uwsgi
 与WSGI一样，是uWSGI服务器的独占通信协议，用于定义传输信息的类型(type of information)。每一个uwsgi packet前4byte为传输信息类型的描述，与WSGI协议是两种东西，据说该协议是fcgi协议的10倍快。
 
 
+## 协议选择
+uwsgi 底层c，但实际效率优势不大。
+基于wsgi协议的gunicorn使用配置简单，我们后面以它为例子。
+
+
 ## django整理成接口形式
 https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/
+
+## 本节目标
+1. 知道django项目由application和通用网关接口两部分组成。
+2. 网关接口有wsgi、uwsgi等协议。
+3. 我们将要采用基于wsgi的服务器工具gunicorn。

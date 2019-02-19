@@ -1,13 +1,15 @@
-未完成
 ## 介绍和作用
 作用：高并发大量请求时管理请求队列，依次进入gunicorn的进程中，使web服务的性能进一步提高。同时比较擅长直接处理纯静态页面，纯静态页面不必通过django渲染出来。
 ### 正向和反向代理
+（结合图例理解）正向指你自己是客户端，访问别人的服务器。反向你自己的服务器上开了个web服务，别人访问你。
 正向场景：翻墙、爬虫时的代理ip
 反向场景：nginx ngrok
 参考 https://blog.csdn.net/u011456940/article/details/53633991
 ## nginx
 ### 安装
 apt-get install nginx
+cd /etc/nginx
+新建 cp nginx.conf nginx.conf.bak
 ### 配置 指向web服务
 我的配置近供参考。
 ```
@@ -127,6 +129,13 @@ http {
 
 ```
 ### 检查配置和生效
+mv /home/sxy/jbt_blog/nginx.conf /etc/nginx/nginx.conf
+cd /etc/nginx/nginx.conf
+nginx -t
+
+停止nginx -s stop
+重启nginx -s reload 
+
 
 ### 最终梳理下思路
 客户端浏览器(出xx.xx.xx.xx) → 阿里云服务器(云盾、安全组、防火墙) → (入8080端口)nginx负载均衡(出转发8000端口) → (入8000)gunicorn多进程(代理django wsgi app)→ django代码中。

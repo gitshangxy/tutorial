@@ -9,7 +9,7 @@ Gunicorn 服务器作为wsgi app的容器，能够与各种Web框架兼容（fla
 ### (了解)原理
 参考 [原理](https://blog.csdn.net/jailman/article/details/78496522)
 worker
-### (不重要)gunicorn vs uWSGI
+### (不重要)gunicorn WSGI vs uWSGI
 https://ivan-site.com/2012/10/gevent-gunicorn-vs-uwsgi/
 
 ## 安装
@@ -18,11 +18,11 @@ pip3 install gunicorn
 
 ## 简单启动
 cd /home/yangzheng/jbt_blog/
-gunicorn -w 1 -b 0.0.0.0:8000 jbt_blog.wsgi:application
+`gunicorn -w 1 -b 0.0.0.0:8000 jbt_blog.wsgi:application`
 
 ## 多进程启动
 ### 配置
-yourproject/gunicorn-config.py
+yourproject/gunicorn.conf
 ```
 bind = '0.0.0.0:8000'
 workers = 2
@@ -39,19 +39,43 @@ errorlog = "-"   #错误日志文件，"-" 表示标准输出
 worker数量建议cpu核心数*2+1。
 配置nginx时，需要将此bind地址写入nginx配置文件中。
 daemon = True  下面启动就不用nohup关键字了。
+
+以配置方式启动: cd到项目根目录;`gunicorn -c gunicorn.conf jbt_blog.wsgi`
 ### nohup和&
-目前一个问题是退出程序后命令随之结束无法访问。
-参考 https://blog.csdn.net/hl449006540/article/details/80216061
+目前一个问题是退出程序后命令随之结束导致web无法访问。
+nohup和&区别参考 https://blog.csdn.net/hl449006540/article/details/80216061
+#### &
+&让命令进程在后台执行。
+命令后接& 在后台运行，这时前台可以继续执行其它命令，并且刚才的命令不会中断。
+`python3 -m http.server &`
+任务相关命令：
+以后台运行：  命令后& 或ctrl+Z
+查看后台任务：jobs
+后台转前台：fg [job_id]
+（下面几个命令常用）
+查看进程：ps -ef
+查看端口：netstat -tnp | grep 8000  
+结束进程：kill -9 [pid]
+#### nohup
+hup中断的意思。ssh会话关闭后仍然运行。
+用法：nohup放在 命令前   `nohup python3 -m http.server`
+这样的进程叫守护进程deamon。
 经常连用nohup command & 来让程序一直在后台运行。
-### 启动
+
+### (最终)启动
 cd /home/yangzheng/jbt_blog
-nohup gunicorn -c gunicorn.conf jbt_blog.wsgi &
+`nohup gunicorn -c gunicorn.conf jbt_blog.wsgi &`
 ### 终止
 结束后台运行的程序以释放端口
 ps -ef | grep gunicorn  可以看到多个worker进程
 kill [pid]
+其它可能用到的命令
+netstat -tnlp 查看监听中的端口
+killall
+kill -9 [pid]   强制执行
 
 
 ## 参考
+gunicorn原理
 https://www.cnblogs.com/nanrou/p/7026802.html
 https://blog.csdn.net/y472360651/article/details/78538188
