@@ -63,6 +63,7 @@ class RRCSpider(object):
             response = requests.get(url=url, headers={'User-Agent': self.ua.chrome})
             if response.status_code == 200:
                 return response.text
+                print(response)
             else:
                 print('详情页状态码异常：{}'.format(response.status_code))
                 return None

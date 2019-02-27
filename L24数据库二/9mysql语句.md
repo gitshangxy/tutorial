@@ -15,6 +15,11 @@ create table shop(
 
 insert into shop values (1,'A',3.45),(2,'B',4.66),(3,'C',3.47);
 
+
+select count(id) as amount,product_color from comment group by product_color;
+select rate_content, append_content, rate_date from comments order by  rate_date desc;
+
+
 select * from shop;
 
 select MAX(article) as max_article from shop; -- 函数
@@ -69,9 +74,6 @@ DELETE FROM shirt WHERE id=8;
 DELETE FROM shirt WHERE id=9;
 DELETE FROM shirt WHERE id=10;
 
-
-select count(id) as amount,product_color from comment group by product_color;
-select rate_content, append_content, rate_date from comments order by  rate_date desc;
 
 -- 避免过多的表直接连接降低查询效率
 

@@ -1,0 +1,49 @@
+经常在一些简历要求中看到的：
+1. 会restful风格api的书写。
+
+api是接口的意思。 restful（rest风格）。
+rest是一种设计风格，并不是一种新设计。
+
+### 产生
+rest风格出现前大家写网站项目，例如在线生鲜系统。
+这个项目有用户、商品、订单、物流。
+
+不同程序员会有不同的定义风格
+
+修改商品
+删除商品...其它的模块。
+
+当中大型项目几十上百api的时候，不同程序员会有不同的定义路由风格，导致路由风格不统一难以维护。
+
+### rest
+为了避免上述缺点，就一个程序员大神发表了一篇演讲，推荐开发人员按照统一风格去设计易读易维护的路由。
+1. GET/goods/ 
+2. GET/goods/good_id/ 
+3. GET/goods/?min_price=10 
+4. GET/goods/ 
+5. UPDATE/goods/ 
+6. DELETE/goods/ 
+7. http://api.domain.com/vl/get_goods_list/
+
+优点：按照rest风格设计之后，路由变的非常清晰简洁，易于维护扩展，协同开发。
+requests.get(url)
+
+### 其它
+现在新一代 graphsql。
+目前市场上主流还是restful风格的api
+现在有些框架
+
+
+
+## 参考
+
+## 电商项目
+克隆
+ git clone git@gitee.com:canaan_ge/store_backend.git --branch base
+ git clone git@gitee.com:canaan_ge/store_frontend.git --branch base
+1. 在store_backend下下载依赖 cnpm install
+运行 npm run dev
+2. store_backend下安装虚拟环境 终端 pyvenv venv
+
+迁移 python manage.py makemigrations
+     python manage.py migrate

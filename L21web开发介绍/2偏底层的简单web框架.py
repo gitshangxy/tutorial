@@ -28,6 +28,8 @@ while True:
     # 开头必须为http，不能为空格，可以为tab，不能换行。
     http_response = b"""HTTP/1.1 200 OK\r\n\r\n
     hello,world!
+    hello,world!
+    hello,world!
     """
     client_connection.send(http_response)
     client_connection.close()

@@ -5,7 +5,8 @@ python虚拟解释器环境
 解决方案： 我们电脑现在只有一套python解释器，以它基础，虚拟出几个解释器的备份。
 老的教材中要先安装virtualenv（虚拟environment环境），因为使用较多，所以py3.4起官方直接内置了venv包。
 
-(cmd)pyhton -m venv 虚拟环境名    #创建虚拟环境
+(cmd)pyhton -m venv 虚拟环境名    #创建虚拟
+环境
 创建完发现虚拟环境具备python.exe pip.exe active.bat,Lib库中除了pip包是空的，就好像刚重装完电脑系统。
 (cmd) cd 虚拟环境名/Scripts
 (cmd) activate.bat      # 激活虚拟环境
